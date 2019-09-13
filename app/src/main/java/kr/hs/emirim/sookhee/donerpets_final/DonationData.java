@@ -1,4 +1,4 @@
 package kr.hs.emirim.sookhee.donerpets_final;
 
-public class DetailActivity {
+public class DonationData {
 }
