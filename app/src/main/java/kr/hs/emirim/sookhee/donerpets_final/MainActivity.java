@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 DataApplication MyData = (DataApplication)getApplication();
-                MyData.setPosition(position);
+                MyData.setStoryPosition(position);
+                MyData.setShelterPosition(position);
 
                 Intent intent = new Intent(MainActivity.this, DetailActivity.class);
                 intent.putExtra("Example Item", mExampleList.get(position));

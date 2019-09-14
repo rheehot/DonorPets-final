@@ -11,7 +11,9 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/toolbar"
@@ -50,9 +52,8 @@
             android:id="@+id/go_donation"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:gravity="center"
+            android:layout_gravity="center"
+            android:onClick="onGoDonationClick"
             android:text="기부하러가기"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -94,7 +95,30 @@
             <ListView
                 android:id="@+id/list_message"
                 android:layout_width="match_parent"
-                android:layout_height="340dp" />
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <Button
+                    android:id="@+id/btn_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onLikeClick"
+                    android:text="좋아요" />
+
+                <TextView
+                    android:id="@+id/text_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="0명이 이 스토리를 응원합니다." />
+            </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>

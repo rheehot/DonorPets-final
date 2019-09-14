@@ -41,56 +41,65 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
+        android:id="@+id/text_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="17sp"
-        android:text="남양주 유기견 보호소"/>
+        android:layout_height="40dp"
+        android:text="남양주 유기견 보호소"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/text_phone"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="010-1010-2020"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/text_account"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="신한 110-528-561287 윤주하"
+        android:textSize="12sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:text="010-1010-2020"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:text="신한 110-528-561287 윤주하"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="13sp"
-        android:text="기부하기 전"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="기부방식"
-        android:textSize="12sp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="반드시 보호소에 연락을 해주셔야 합니다."
+        android:background="#E0E0E0"
+        android:text="기부하기 전"
         android:textSize="13sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#e0e0e0"
+        android:text="반드시 보호소에 연락을 해주셔야 합니다."
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="기부방식"
+        android:textSize="12sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:text="방식"/>
+        <EditText
+            android:id="@+id/edit_type"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="방식(후원, 수건, 사료 기부)"
+            android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/수량_금액"
+            android:id="@+id/edit_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:ems="10"
             android:hint="수량/금액"
@@ -100,8 +109,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="기부하기"
-        android:textSize="14sp"/>
+        android:background="#E0E0E0"
+        android:text="기부약관"
+        android:textSize="14sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -111,16 +121,18 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="2019.10.01까지 기부를 완료해주세요"/>
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="2019.10.01까지 기부를 완료해주세요" />
 
     <Button
         android:id="@+id/donationButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:background="#448cff"
-        android:onClick="ongoDonation"
+        android:onClick="onAllowDonation"
         android:text="동의 후 기부하기"
         android:textSize="17sp" />
 </LinearLayout>
