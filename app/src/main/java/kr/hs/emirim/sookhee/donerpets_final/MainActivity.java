@@ -57,9 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 MyData.setStoryPosition(position);
                 MyData.setShelterPosition(position);
 
-                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                intent.putExtra("Example Item", mExampleList.get(position));
-
+                Intent intent=new Intent(MainActivity.this,DetailActivity.class);
                 startActivity(intent);
             }
         });

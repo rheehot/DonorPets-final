@@ -6,8 +6,7 @@ import android.app.Application;
 public class DataApplication extends Application {
     private int storyPosition = 0;
     private int shelterPosition = 0;
-    private String userName = "sookhee";
-    private int donationCount = 1;
+    private String userName = "minji";
 
     public void setStoryPosition(int position){
         this.storyPosition = position;
@@ -33,11 +32,4 @@ public class DataApplication extends Application {
         return this.userName;
     }
 
-    public void addDonationCount(){
-        this.donationCount++;
-    }
-
-    public int getDonationCount(){
-        return this.donationCount;
-    }
 }

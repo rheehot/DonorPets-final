@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class DonationActivity extends AppCompatActivity {
 
-    private static final String TAG = "Donation";
+    private static final String TAG = "DonationActivity";
 
     FirebaseDatabase database;
     DatabaseReference myRef;
@@ -59,6 +59,7 @@ public class DonationActivity extends AppCompatActivity {
                 String name = dataSnapshot.child("name").getValue(String.class);
                 String phone = dataSnapshot.child("phone").getValue(String.class);
                 String account = dataSnapshot.child("account").getValue(String.class);
+
                 //데이터를 화면에 출력해 준다.
                 text_name.setText(name);
                 text_phone.setText(phone);
@@ -91,10 +92,9 @@ public class DonationActivity extends AppCompatActivity {
         DonationData donationData = new DonationData();
         donationData.type = type;
         donationData.count = count;
+        donationData.shelter = MyData.getShelterPosition();
         myDonation.child("donation").push().setValue(donationData);
 
-        MyData.addDonationCount();
-        myDonation.child("count").setValue(MyData.getDonationCount());
         Toast.makeText(getApplicationContext(), "기부 감사합니다", Toast.LENGTH_SHORT).show();
         finish();
     }
