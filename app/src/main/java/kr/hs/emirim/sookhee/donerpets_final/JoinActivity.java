@@ -3,8 +3,6 @@ package kr.hs.emirim.sookhee.donerpets_final;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Region;
-import android.graphics.RegionIterator;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -15,12 +13,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
-public class RegistActivity extends AppCompatActivity {
+public class JoinActivity extends AppCompatActivity {
 
     // 비밀번호 정규식
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("^[a-zA-Z0-9!@.#$%^&*?_~]{4,16}$");
@@ -38,7 +34,7 @@ public class RegistActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_regist);
+        setContentView(R.layout.activity_join);
 
         // 파이어베이스 인증 객체 선언
         firebaseAuth = FirebaseAuth.getInstance();
@@ -103,10 +99,10 @@ public class RegistActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // 회원가입 성공
-                            Toast.makeText(RegistActivity.this, R.string.success_signup, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(JoinActivity.this, R.string.success_signup, Toast.LENGTH_SHORT).show();
                         } else {
                             // 회원가입 실패
-                            Toast.makeText(RegistActivity.this, R.string.failed_signup, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(JoinActivity.this, R.string.failed_signup, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -121,10 +117,10 @@ public class RegistActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // 로그인 성공
-                            Toast.makeText(RegistActivity.this, R.string.success_login, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(JoinActivity.this, R.string.success_login, Toast.LENGTH_SHORT).show();
                         } else {
                             // 로그인 실패
-                            Toast.makeText(RegistActivity.this, R.string.failed_login, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(JoinActivity.this, R.string.failed_login, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

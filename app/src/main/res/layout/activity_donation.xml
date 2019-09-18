@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/toolbar_profile"
+            android:id="@+id/toolbar_back"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
@@ -29,7 +29,7 @@
             app:layout_constraintVertical_bias="0.466" />
 
         <TextView
-            android:id="@+id/toolbar_title"
+            android:id="@+id/title_activity2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="DonerPets"

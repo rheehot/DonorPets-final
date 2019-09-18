@@ -6,7 +6,7 @@ import android.app.Application;
 public class DataApplication extends Application {
     private int storyPosition = 0;
     private int shelterPosition = 0;
-    private String userName = "minji";
+    private String userName = "noname";
 
     public void setStoryPosition(int position){
         this.storyPosition = position;

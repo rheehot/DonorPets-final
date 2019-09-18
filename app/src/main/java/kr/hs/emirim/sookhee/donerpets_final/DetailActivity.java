@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.RadialGradient;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -49,7 +50,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        DataApplication MyData = (DataApplication)getApplication();
+        final DataApplication MyData = (DataApplication)getApplication();
 
         Storydatabase = FirebaseDatabase.getInstance();
         myRefStory = Storydatabase.getReference("story").child(String.valueOf(MyData.getStoryPosition()));
@@ -67,15 +68,26 @@ public class DetailActivity extends AppCompatActivity {
                 String line3 = dataSnapshot.child("line3").getValue(String.class);
                 String line4 = dataSnapshot.child("line4").getValue(String.class);
                 String date = dataSnapshot.child("date").getValue(String.class);
+                String shelterName = dataSnapshot.child("shelterName").getValue(String.class);
+                int shelterId = dataSnapshot.child("shelterId").getValue(int.class);
+                String shelterMarks = dataSnapshot.child("shelterMark").getValue(String.class);
+
+                MyData.setShelterPosition(shelterId);
 
                 //데이터를 화면에 출력해 준다.
                 TextView Title = findViewById(R.id.title_activity2);
                 Title.setText(title);
 
+                TextView ShelterName = findViewById(R.id.text_sheltername);
+                ShelterName.setText(shelterName);
+
                 TextView Date = findViewById(R.id.text_date);
                 Date.setText(date);
 
-                ImageView Img1 = (ImageView) findViewById(R.id.image1_activity2);
+                ImageView ShelterMark = findViewById(R.id.img_sheltermark);
+                Picasso.get().load(shelterMarks).into(ShelterMark);
+
+                RadiusImageView  Img1 = (RadiusImageView ) findViewById(R.id.image1_activity2);
                 Picasso.get().load(img1).into(Img1);
                 ImageView Img2 = (ImageView) findViewById(R.id.image2_activity2);
                 Picasso.get().load(img2).into(Img2);
@@ -107,8 +119,17 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
+    public void onLikeClick(View v){
+        Toast.makeText(getApplicationContext(), "LIKE", Toast.LENGTH_SHORT).show();
+    }
+
     public void onBackClick(View v){
         super.onBackPressed();
+    }
+
+    public void onGoShelter(View v){
+        Intent intent = new Intent(DetailActivity.this, ShelterActivity.class);
+        startActivity(intent);
     }
 
     public void onGoDonationClick(View v){
