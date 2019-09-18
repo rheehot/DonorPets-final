@@ -30,15 +30,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onProfileClick(View v){
-        Intent intent=new Intent(MainActivity.this,ProfileActivity.class);
+        Intent intent=new Intent(MainActivity.this,LoginActivity.class);
         startActivity(intent);
     }
 
     public void createExampleList() {
         mExampleList = new ArrayList<>();
-        mExampleList.add(new ExampleItem(R.drawable.img01, "Line 1", "Line 2"));
-        mExampleList.add(new ExampleItem(R.drawable.img02, "Line 3", "Line 4"));
-        mExampleList.add(new ExampleItem(R.drawable.img03, "Line 5", "Line 6"));
+        mExampleList.add(new ExampleItem(R.drawable.img01, "8월 6일 보호소 한 바퀴", "일주일 전"));
+        mExampleList.add(new ExampleItem(R.drawable.img02, "이불과 헌 옷 보내주시면 고맙겠습니다", "4일 전"));
+        mExampleList.add(new ExampleItem(R.drawable.img03, "보호소 야옹이 친구들이에용~♡", "2일 전"));
+        mExampleList.add(new ExampleItem(R.drawable.img04, "남양주 유기견 보호소 친구들을 소개합니다", "30분 전"));
     }
 
     public void buildRecyclerView() {
