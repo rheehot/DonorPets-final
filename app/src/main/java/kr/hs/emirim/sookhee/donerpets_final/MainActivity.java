@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 
@@ -33,11 +34,12 @@ public class MainActivity extends AppCompatActivity {
         DataApplication MyData = (DataApplication)getApplication();
 
         Intent intent;
-        if(MyData.getLogin() == true){
-            intent=new Intent(MainActivity.this,ProfileActivity.class);
+        if(SaveSharedPreference.getUserName(MainActivity.this).length() == 0){
+            intent=new Intent(MainActivity.this,LoginActivity.class);
 
         }else{
-            intent=new Intent(MainActivity.this,LoginActivity.class);
+            intent=new Intent(MainActivity.this,ProfileActivity.class);
+            Toast.makeText(getApplicationContext(), "reference : " + SaveSharedPreference.getUserName(this).toString(), Toast.LENGTH_LONG).show();
         }
         startActivity(intent);
     }

@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     // 로그인
-    private void loginUser(String email, String password){
+    private void loginUser(final String email, String password){
         final DataApplication MyData = (DataApplication)getApplication();
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // 로그인 성공
-                            MyData.onLogin();
+                            SaveSharedPreference.setUserName(LoginActivity.this, email);
                             Toast.makeText(LoginActivity.this, R.string.success_login, Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
