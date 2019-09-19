@@ -150,7 +150,7 @@ public class DetailActivity extends AppCompatActivity {
                 if (!TextUtils.isEmpty(message)) {
                     mEdtMessage.setText("");
                     ChatData chatData = new ChatData();
-                    chatData.userName = MyData.getUserName();
+                    chatData.userName = SaveSharedPreference.getUserName(DetailActivity.this);
                     chatData.message = message;
                     mDatabaseReference.push().setValue(chatData);
                 }

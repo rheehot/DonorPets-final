@@ -23,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.regex.Pattern;
 
@@ -35,15 +36,13 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
 
     // Firebase
-    private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference mDatabaseReference;
-    private ChildEventListener mChildEventListener;
+    //Firebase2
+    FirebaseDatabase database;
+    DatabaseReference myRef;
 
     // 이메일과 비밀번호
     private EditText editTextEmail;
     private EditText editTextPassword;
-    private EditText editTextUsername;
-    private EditText editTextPhone;
 
     private String email = "";
     private String password = "";
@@ -58,8 +57,6 @@ public class LoginActivity extends AppCompatActivity {
 
         editTextEmail = findViewById(R.id.et_eamil);
         editTextPassword = findViewById(R.id.et_password);
-        editTextUsername = findViewById(R.id.et_name);
-        editTextPhone = findViewById(R.id.et_phone);
     }
 
     public void signIn(View view) {
@@ -112,8 +109,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // 로그인 성공
-                            SaveSharedPreference.setUserName(LoginActivity.this, email);
-                            Toast.makeText(LoginActivity.this, R.string.success_login, Toast.LENGTH_SHORT).show();
+                            getUsername();
+                            Toast.makeText(LoginActivity.this, "로그인 성공 : " + email, Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
                             // 로그인 실패
@@ -121,6 +118,26 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void getUsername(){
+
+        final String split[] = email.split("@");
+
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("user").child(split[0]);
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String user = dataSnapshot.child("username").getValue(String.class);
+                SaveSharedPreference.setUserName(LoginActivity.this, user);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
     }
 
 }

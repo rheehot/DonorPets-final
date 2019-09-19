@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android" >
-
-<!-- 평상시 -->
-<item android:state_focused="false" android:state_pressed="false">
-    <shape>
-        <solid android:color="#fff"/>
-        <corner android:radius="20dp" />
-        <stroke
-            android:width="2dp"
-            android:color="#fff" />
-    </shape>
-</item>
-
-</selector>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF"/>
+    <stroke android:width="0dip" android:color="#B1BCBE" />
+    <corners android:topLeftRadius="30dp" android:topRightRadius="30dp" android:bottomLeftRadius="0dp" android:bottomRightRadius="0dp"/>
+    <padding android:left="0dip" android:top="0dip" android:right="0dip" android:bottom="0dip" />
+</shape>

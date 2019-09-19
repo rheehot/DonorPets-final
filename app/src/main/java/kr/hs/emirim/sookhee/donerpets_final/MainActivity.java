@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         }else{
             intent=new Intent(MainActivity.this,ProfileActivity.class);
-            Toast.makeText(getApplicationContext(), "reference : " + SaveSharedPreference.getUserName(this).toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "email : " + SaveSharedPreference.getEmail(this), Toast.LENGTH_LONG).show();
         }
         startActivity(intent);
     }

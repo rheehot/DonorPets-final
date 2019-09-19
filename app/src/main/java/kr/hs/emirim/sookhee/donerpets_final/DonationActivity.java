@@ -84,7 +84,7 @@ public class DonationActivity extends AppCompatActivity {
         edit_type = (EditText) findViewById(R.id.edit_type);
         edit_count = (EditText)findViewById(R.id.edit_count);
         donationDatabase = FirebaseDatabase.getInstance();
-        myDonation = donationDatabase.getReference("user").child(MyData.getUserName());
+        myDonation = donationDatabase.getReference("user").child(SaveSharedPreference.getEmail(this));
 
         String type = edit_type.getText().toString();
         int count = Integer.parseInt(edit_count.getText().toString());

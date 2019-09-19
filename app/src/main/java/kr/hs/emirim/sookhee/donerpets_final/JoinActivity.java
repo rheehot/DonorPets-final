@@ -143,13 +143,14 @@ public class JoinActivity extends AppCompatActivity {
     }
 
     private void CreateUserData(){
+
+        String split[] = email.split("@");
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFirebaseDatabase.getReference("user").child(username);
+        mDatabaseReference = mFirebaseDatabase.getReference("user").child(split[0]);
         UserData user = new UserData();
         user.username = username;
         user.phone = phone;
         user.email = email;
-        mDatabaseReference.push().setValue(user);
-        Toast.makeText(getApplicationContext(), "정보 저장 성공 ! " + user.username, Toast.LENGTH_LONG).show();
+        mDatabaseReference.setValue(user);
     }
 }
