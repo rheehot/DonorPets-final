@@ -30,7 +30,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onProfileClick(View v){
-        Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+        DataApplication MyData = (DataApplication)getApplication();
+
+        Intent intent;
+        if(MyData.getLogin() == true){
+            intent=new Intent(MainActivity.this,ProfileActivity.class);
+
+        }else{
+            intent=new Intent(MainActivity.this,LoginActivity.class);
+        }
         startActivity(intent);
     }
 

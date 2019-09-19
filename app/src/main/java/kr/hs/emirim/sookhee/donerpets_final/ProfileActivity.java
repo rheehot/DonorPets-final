@@ -2,9 +2,11 @@ package kr.hs.emirim.sookhee.donerpets_final;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Printer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,5 +33,10 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void onBackClick(View v){
         super.onBackPressed();
+    }
+
+    public void onSettingClick(View v){
+        Intent intent = new Intent(ProfileActivity.this, SettingActivity.class);
+        startActivity(intent);
     }
 }

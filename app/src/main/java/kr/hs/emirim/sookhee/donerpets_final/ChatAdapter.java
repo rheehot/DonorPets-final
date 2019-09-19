@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 public class ChatAdapter extends ArrayAdapter<ChatData> {
-    private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("a h:mm", Locale.getDefault());
 
     public ChatAdapter(Context context, int resource) {
         super(context, resource);
@@ -27,7 +26,6 @@ public class ChatAdapter extends ArrayAdapter<ChatData> {
             viewHolder = new ViewHolder();
             viewHolder.mTxtUserName = (TextView) convertView.findViewById(R.id.txt_userName);
             viewHolder.mTxtMessage = (TextView) convertView.findViewById(R.id.txt_message);
-            viewHolder.mTxtTime = (TextView) convertView.findViewById(R.id.txt_time);
 
             convertView.setTag(viewHolder);
         } else {
@@ -37,7 +35,6 @@ public class ChatAdapter extends ArrayAdapter<ChatData> {
         ChatData chatData = getItem(position);
         viewHolder.mTxtUserName.setText(chatData.userName);
         viewHolder.mTxtMessage.setText(chatData.message);
-        viewHolder.mTxtTime.setText(mSimpleDateFormat.format(chatData.time));
 
         return convertView;
     }
@@ -45,6 +42,5 @@ public class ChatAdapter extends ArrayAdapter<ChatData> {
     private class ViewHolder {
         private TextView mTxtUserName;
         private TextView mTxtMessage;
-        private TextView mTxtTime;
     }
 }

@@ -19,7 +19,7 @@
             android:id="@+id/toolbar_back"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="20dp"
             android:onClick="onBackClick"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,14 +28,24 @@
 
         <TextView
             android:id="@+id/title_activity2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textColor="#000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toEndOf="@+id/toolbar_back"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:textSize="32sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="60dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -67,51 +77,60 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:orientation="horizontal">
 
-                <ImageView
+                <kr.hs.emirim.sookhee.donerpets_final.RadiusImageView
                     android:id="@+id/img_sheltermark"
-                    android:layout_width="67dp"
-                    android:layout_height="67dp"
-                    android:layout_marginLeft="20dp"
-                    android:paddingTop="4dp"
-                    android:paddingRight="4dp"
-                    android:paddingBottom="4dp"
-                    app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/linearLayout5"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:orientation="vertical">
+                    android:layout_marginLeft="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/go_shelter"
+                    app:layout_constraintStart_toEndOf="@+id/img_sheltermark"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/text_sheltername"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="유기견 보호소 이름"
-                        android:textSize="25sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/text_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="날짜"
-                        android:textSize="22sp" />
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <ImageView
                     android:id="@+id/go_shelter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="20dp"
                     android:onClick="onGoShelter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal_background" />
-            </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <kr.hs.emirim.sookhee.donerpets_final.RadiusImageView
                 android:id="@+id/image1_activity2"
@@ -120,6 +139,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:adjustViewBounds="true"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/img14" />
@@ -133,7 +154,7 @@
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:textColor="#b3000000"
-                android:textSize="25sp" />
+                android:textSize="16sp" />
 
             <kr.hs.emirim.sookhee.donerpets_final.RadiusImageView
                 android:id="@+id/image2_activity2"
@@ -141,7 +162,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:adjustViewBounds="true" />
+                android:adjustViewBounds="true"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp" />
 
             <TextView
                 android:id="@+id/text2_activity2"
@@ -152,7 +175,7 @@
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:textColor="#b3000000"
-                android:textSize="25sp" />
+                android:textSize="16sp" />
 
             <kr.hs.emirim.sookhee.donerpets_final.RadiusImageView
                 android:id="@+id/image3_activity2"
@@ -160,7 +183,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:adjustViewBounds="true" />
+                android:adjustViewBounds="true"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp" />
 
             <TextView
                 android:id="@+id/text3_activity2"
@@ -171,7 +196,7 @@
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:textColor="#b3000000"
-                android:textSize="25sp" />
+                android:textSize="16sp" />
 
             <kr.hs.emirim.sookhee.donerpets_final.RadiusImageView
                 android:id="@+id/image4_activity2"
@@ -179,7 +204,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:adjustViewBounds="true" />
+                android:adjustViewBounds="true"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp" />
 
             <TextView
                 android:id="@+id/text4_activity2"
@@ -188,9 +215,9 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:textColor="#b3000000"
-                android:textSize="25sp"
-                android:paddingBottom="5dp" />
+                android:textSize="16sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

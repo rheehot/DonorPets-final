@@ -75,6 +75,7 @@
         android:background="@drawable/button"
         android:onClick="signIn"
         android:text="@string/signin"
+        android:textColor="#137ef5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.625"

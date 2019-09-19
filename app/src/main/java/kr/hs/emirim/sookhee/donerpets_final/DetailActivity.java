@@ -152,7 +152,6 @@ public class DetailActivity extends AppCompatActivity {
                     ChatData chatData = new ChatData();
                     chatData.userName = MyData.getUserName();
                     chatData.message = message;
-                    chatData.time = System.currentTimeMillis();
                     mDatabaseReference.push().setValue(chatData);
                 }
             }

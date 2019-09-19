@@ -11,27 +11,28 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/colorPrimary">
+        android:background="#ffffff">
 
         <ImageView
             android:id="@+id/toolbar_back"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/logo"
+            android:contentDescription="TODO"
             android:onClick="onProfileClick"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.466"
-            android:contentDescription="TODO" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/title_activity2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="DonerPets"
-            android:textColor="#fff"
+            android:textColor="#137ef5"
+            android:textSize="22sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +43,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/darker_gray"
+        android:background="#f5f5f5  "
         android:padding="4dp"
         android:scrollbars="vertical" />
 
