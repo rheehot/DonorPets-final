@@ -75,7 +75,7 @@ public class DetailActivity extends AppCompatActivity {
                 MyData.setShelterPosition(shelterId);
 
                 //데이터를 화면에 출력해 준다.
-                TextView Title = findViewById(R.id.title_activity2);
+                TextView Title = findViewById(R.id.text_title);
                 Title.setText(title);
 
                 TextView ShelterName = findViewById(R.id.text_sheltername);
@@ -84,7 +84,7 @@ public class DetailActivity extends AppCompatActivity {
                 TextView Date = findViewById(R.id.text_date);
                 Date.setText(date);
 
-                ImageView ShelterMark = findViewById(R.id.img_sheltermark);
+                ImageView ShelterMark = findViewById(R.id.text_sheltermark);
                 Picasso.get().load(shelterMarks).into(ShelterMark);
 
                 RadiusImageView  Img1 = (RadiusImageView ) findViewById(R.id.image1_activity2);

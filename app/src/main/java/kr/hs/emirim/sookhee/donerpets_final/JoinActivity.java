@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -13,6 +14,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
@@ -24,12 +27,20 @@ public class JoinActivity extends AppCompatActivity {
     // 파이어베이스 인증 객체 생성
     private FirebaseAuth firebaseAuth;
 
+    // Firebase
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mDatabaseReference;
+
     // 이메일과 비밀번호
     private EditText editTextEmail;
     private EditText editTextPassword;
+    private EditText editTextUsername;
+    private EditText editTextPhone;
 
     private String email = "";
     private String password = "";
+    private String username = "";
+    private String phone = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +52,15 @@ public class JoinActivity extends AppCompatActivity {
 
         editTextEmail = findViewById(R.id.et_eamil);
         editTextPassword = findViewById(R.id.et_password);
+        editTextUsername = findViewById(R.id.et_name);
+        editTextPhone = findViewById(R.id.et_phone);
     }
 
     public void signUp(View view) {
         email = editTextEmail.getText().toString();
         password = editTextPassword.getText().toString();
+        username = editTextUsername.getText().toString();
+        phone = editTextPhone.getText().toString();
 
         if(isValidEmail() && isValidPasswd()) {
             createUser(email, password);
@@ -99,6 +114,7 @@ public class JoinActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // 회원가입 성공
+                            CreateUserData();
                             Toast.makeText(JoinActivity.this, R.string.success_signup, Toast.LENGTH_SHORT).show();
                         } else {
                             // 회원가입 실패
@@ -124,5 +140,16 @@ public class JoinActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void CreateUserData(){
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mDatabaseReference = mFirebaseDatabase.getReference("user").child(username);
+        UserData user = new UserData();
+        user.username = username;
+        user.phone = phone;
+        user.email = email;
+        mDatabaseReference.push().setValue(user);
+        Toast.makeText(getApplicationContext(), "정보 저장 성공 ! " + user.username, Toast.LENGTH_LONG).show();
     }
 }
