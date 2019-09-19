@@ -116,6 +116,7 @@ public class JoinActivity extends AppCompatActivity {
                             // 회원가입 성공
                             CreateUserData();
                             Toast.makeText(JoinActivity.this, R.string.success_signup, Toast.LENGTH_SHORT).show();
+                            finish();
                         } else {
                             // 회원가입 실패
                             Toast.makeText(JoinActivity.this, R.string.failed_signup, Toast.LENGTH_SHORT).show();

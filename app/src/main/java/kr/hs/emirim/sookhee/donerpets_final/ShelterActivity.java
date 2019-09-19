@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,9 +18,14 @@ import com.squareup.picasso.Picasso;
 
 public class ShelterActivity extends AppCompatActivity {
 
+    // Firebase
+    private FirebaseDatabase mFirebaseDatabaseS;
+    private DatabaseReference mDatabaseReferenceS;
+
     //Firebase2
     FirebaseDatabase database;
     DatabaseReference myRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,7 @@ public class ShelterActivity extends AppCompatActivity {
                 int shelterDonationCount = dataSnapshot.child("donationCount").getValue(int.class);
                 int shelterLikeCount = dataSnapshot.child("likeCount").getValue(int.class);
                 int shelterStoryCount = dataSnapshot.child("storyCount").getValue(int.class);
+                String shelterIntro = dataSnapshot.child("intro").getValue(String.class);
 
 
                 //데이터를 화면에 출력해 준다.
@@ -61,17 +68,36 @@ public class ShelterActivity extends AppCompatActivity {
                 TextView ShelterStoryCount = findViewById(R.id.tv_shelter_story_count);
                 ShelterStoryCount.setText(String.valueOf(shelterStoryCount));
 
+                TextView ShelterIntro = findViewById(R.id.tv_shelter_intro);
+                ShelterIntro.setText(shelterIntro);
+
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                Log.w("DetailActivitys", "Failed to read value.", error.toException());
+
             }
         });
     }
 
     public void onBackClick(View v){
         super.onBackPressed();
+    }
+
+    public void onClickShelterLike(View v){
+
+        CheckBox checkBox = (CheckBox) findViewById(R.id.check_shelter_like) ;
+
+        DataApplication MyData = (DataApplication)getApplication();
+
+        mFirebaseDatabaseS = FirebaseDatabase.getInstance();
+        mDatabaseReferenceS = mFirebaseDatabaseS.getReference("user").child(SaveSharedPreference.getEmail(this)).child("shelterLike");
+
+        if (checkBox.isChecked()) {
+            mDatabaseReferenceS.child(String.valueOf(MyData.getShelterPosition())).setValue("1");
+        } else {
+            mDatabaseReferenceS.child(String.valueOf(MyData.getShelterPosition())).setValue("0");
+        }
     }
 }

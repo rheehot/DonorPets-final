@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // 로그인 성공
                             getUsername();
-                            Toast.makeText(LoginActivity.this, "로그인 성공 : " + email, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "로그인 성공 : ", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
                             // 로그인 실패
@@ -131,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String user = dataSnapshot.child("username").getValue(String.class);
                 SaveSharedPreference.setUserName(LoginActivity.this, user);
+                SaveSharedPreference.setEmail(LoginActivity.this, split[0]);
             }
 
             @Override
