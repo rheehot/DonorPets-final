@@ -131,8 +131,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="#448cff"
+        android:background="@drawable/button"
         android:onClick="onAllowDonation"
         android:text="동의 후 기부하기"
+        android:textColor="#137ef5"
         android:textSize="17sp" />
 </LinearLayout>

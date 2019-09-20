@@ -70,6 +70,7 @@ public class DetailActivity extends AppCompatActivity {
                 String date = dataSnapshot.child("date").getValue(String.class);
                 String shelterName = dataSnapshot.child("shelterName").getValue(String.class);
                 int shelterId = dataSnapshot.child("shelterId").getValue(int.class);
+                Toast.makeText(getApplicationContext(), "shelterId : " + shelterId, Toast.LENGTH_LONG).show();
                 String shelterMarks = dataSnapshot.child("shelterMark").getValue(String.class);
 
                 MyData.setShelterPosition(shelterId);

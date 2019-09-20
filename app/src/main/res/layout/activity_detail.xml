@@ -50,24 +50,34 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/go_donation"
-        android:layout_width="300dp"
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="8dp"
-        android:onClick="onGoDonationClick"
-        android:text="기부하러가기"
+        android:orientation="vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/go_donation"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/button"
+            android:onClick="onGoDonationClick"
+            android:text="기부하러가기"
+            android:textColor="#137ef5" />
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/go_donation"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
@@ -76,22 +86,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/shelterprofile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:orientation="horizontal">
 
-                <kr.hs.emirim.sookhee.donerpets_final.RadiusImageView
-                    android:id="@+id/text_sheltermark"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="20dp"
+                <ImageView
+                    android:id="@+id/go_shelter"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="20dp"
+                    android:onClick="onGoShelter"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal_background" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout5"
@@ -117,19 +132,27 @@
                         android:textSize="15sp" />
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/go_shelter"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="20dp"
-                    android:onClick="onGoShelter"
+                <kr.hs.emirim.sookhee.donerpets_final.RadiusImageView
+                    android:id="@+id/text_sheltermark"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal_background" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/text1_activity2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="#b3000000"
+                android:textSize="16sp" />
 
             <kr.hs.emirim.sookhee.donerpets_final.RadiusImageView
                 android:id="@+id/image1_activity2"
@@ -142,10 +165,10 @@
                 android:paddingBottom="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/img14" />
+                app:srcCompat="@drawable/img01" />
 
             <TextView
-                android:id="@+id/text1_activity2"
+                android:id="@+id/text2_activity2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -166,7 +189,7 @@
                 android:paddingBottom="4dp" />
 
             <TextView
-                android:id="@+id/text2_activity2"
+                android:id="@+id/text3_activity2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -187,7 +210,7 @@
                 android:paddingBottom="4dp" />
 
             <TextView
-                android:id="@+id/text3_activity2"
+                android:id="@+id/text4_activity2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -206,17 +229,6 @@
                 android:adjustViewBounds="true"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp" />
-
-            <TextView
-                android:id="@+id/text4_activity2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:textColor="#b3000000"
-                android:textSize="16sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -255,6 +267,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/text_likecount"
                     app:layout_constraintStart_toEndOf="@+id/text_likecount"
                     app:layout_constraintTop_toTopOf="@+id/text_likecount" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
@@ -289,9 +302,7 @@
             <ListView
                 android:id="@+id/list_message"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_height="300dp">
 
             </ListView>
         </LinearLayout>

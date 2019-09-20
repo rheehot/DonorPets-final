@@ -17,6 +17,8 @@ public class SplashActivity extends AppCompatActivity {
 
         startActivity(intent); //다음 액티비티 이동
 
+        finish();
+
 
     }
 }
