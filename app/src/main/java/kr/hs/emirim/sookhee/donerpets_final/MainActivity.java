@@ -1,5 +1,7 @@
 package kr.hs.emirim.sookhee.donerpets_final;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,68 +11,77 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-
-import java.util.ArrayList;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<ExampleItem> mExampleList;
 
-    private RecyclerView mRecyclerView;
-    private ExampleAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    RecyclerView recyclerView;
+    CustomAdapter adapter;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference mRef = database.getReference().child("story");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        createExampleList();
-        buildRecyclerView();
+        recyclerView = findViewById(R.id.recyclerView);
+        adapter = new CustomAdapter(this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+
+        mRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String key = dataSnapshot.getKey();
+                Story story = dataSnapshot.getValue(Story.class);
+
+                adapter.addDataAndUpdate(key, story);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String key = dataSnapshot.getKey();
+                Story story = dataSnapshot.getValue(Story.class);
+
+                adapter.addDataAndUpdate(key, story);
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                String key = dataSnapshot.getKey();
+
+                adapter.deleteDataAndUpdate(key);
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
-    public void onProfileClick(View v){
-        DataApplication MyData = (DataApplication)getApplication();
+    public void onProfileClick(View v) {
 
         Intent intent;
-        if(SaveSharedPreference.getUserName(MainActivity.this).length() == 0){
-            intent=new Intent(MainActivity.this,LoginActivity.class);
+        if (SaveSharedPreference.getUserName(MainActivity.this).length() == 0) {
+            intent = new Intent(MainActivity.this, LoginActivity.class);
 
-        }else{
-            intent=new Intent(MainActivity.this,ProfileActivity.class);
+        } else {
+            intent = new Intent(MainActivity.this, ProfileActivity.class);
             Toast.makeText(getApplicationContext(), "email : " + SaveSharedPreference.getEmail(this), Toast.LENGTH_LONG).show();
         }
         startActivity(intent);
-    }
-
-    public void createExampleList() {
-        mExampleList = new ArrayList<>();
-        mExampleList.add(new ExampleItem(R.drawable.img01, "8월 6일 보호소 한 바퀴", "일주일 전"));
-        mExampleList.add(new ExampleItem(R.drawable.img02, "이불과 헌 옷 보내주시면 고맙겠습니다", "4일 전"));
-        mExampleList.add(new ExampleItem(R.drawable.img03, "보호소 야옹이 친구들이에용~♡", "2일 전"));
-        mExampleList.add(new ExampleItem(R.drawable.img04, "남양주 유기견 보호소 친구들을 소개합니다", "30분 전"));
-    }
-
-    public void buildRecyclerView() {
-        mRecyclerView = findViewById(R.id.recyclerView);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new ExampleAdapter(mExampleList);
-
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
-
-        mAdapter.setOnItemClickListener(new ExampleAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                DataApplication MyData = (DataApplication)getApplication();
-                MyData.setStoryPosition(position);
-                MyData.setShelterPosition(position);
-
-                Intent intent=new Intent(MainActivity.this,DetailActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 }

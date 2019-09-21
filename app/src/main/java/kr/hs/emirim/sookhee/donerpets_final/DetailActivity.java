@@ -44,16 +44,19 @@ public class DetailActivity extends AppCompatActivity {
     FirebaseDatabase Storydatabase;
     DatabaseReference myRefStory;
 
+    private String shelterPosition;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        final DataApplication MyData = (DataApplication)getApplication();
+        Intent intent = getIntent();
+        String storyPosition = intent.getExtras().getString("storyPosition");
 
         Storydatabase = FirebaseDatabase.getInstance();
-        myRefStory = Storydatabase.getReference("story").child(String.valueOf(MyData.getStoryPosition()));
+        myRefStory = Storydatabase.getReference("story").child(String.valueOf(storyPosition));
 
         myRefStory.addValueEventListener(new ValueEventListener() {
             @Override
@@ -73,7 +76,7 @@ public class DetailActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "shelterId : " + shelterId, Toast.LENGTH_LONG).show();
                 String shelterMarks = dataSnapshot.child("shelterMark").getValue(String.class);
 
-                MyData.setShelterPosition(shelterId);
+                shelterPosition = String.valueOf(shelterId);
 
                 //데이터를 화면에 출력해 준다.
                 TextView Title = findViewById(R.id.text_title);
@@ -130,11 +133,13 @@ public class DetailActivity extends AppCompatActivity {
 
     public void onGoShelter(View v){
         Intent intent = new Intent(DetailActivity.this, ShelterActivity.class);
+        intent.putExtra("shelterPosition", shelterPosition);
         startActivity(intent);
     }
 
     public void onGoDonationClick(View v){
         Intent intent=new Intent(DetailActivity.this,DonationActivity.class);
+        intent.putExtra("shelterPosition", shelterPosition);
         startActivity(intent);
     }
     private void initViews() {

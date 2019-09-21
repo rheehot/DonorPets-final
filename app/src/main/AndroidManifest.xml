@@ -12,7 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
-        <activity android:name=".SplashActivity" android:theme="@style/SplashTheme">
+        <activity android:name=".FirstStartActivity"></activity>
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +28,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".ShelterActivity" />
         <activity android:name=".DetailActivity" />
-        <activity android:name=".DonationActivity" />x
+        <activity android:name=".DonationActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MainActivity" />
     </application>

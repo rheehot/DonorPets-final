@@ -76,10 +76,10 @@ public class LoginActivity extends AppCompatActivity {
     // 이메일 유효성 검사
     private boolean isValidEmail() {
         if (email.isEmpty()) {
-            // 이메일 공백
+            Toast.makeText(getApplicationContext(), "이메일을 입력해주세요", Toast.LENGTH_SHORT);
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            // 이메일 형식 불일치
+            Toast.makeText(getApplicationContext(), "이메일 형식이 맞지 않습니다", Toast.LENGTH_SHORT).show();
             return false;
         } else {
             return true;
@@ -89,10 +89,10 @@ public class LoginActivity extends AppCompatActivity {
     // 비밀번호 유효성 검사
     private boolean isValidPasswd() {
         if (password.isEmpty()) {
-            // 비밀번호 공백
+            Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
             return false;
         } else if (!PASSWORD_PATTERN.matcher(password).matches()) {
-            // 비밀번호 형식 불일치
+            Toast.makeText(getApplicationContext(), "비밀번호 형식이 맞지 않습니다.", Toast.LENGTH_SHORT).show();
             return false;
         } else {
             return true;
