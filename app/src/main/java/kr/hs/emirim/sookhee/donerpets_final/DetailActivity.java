@@ -4,15 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.RadialGradient;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +33,7 @@ import java.util.Random;
 
 public class DetailActivity extends AppCompatActivity {
 
+
     // Firebase
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
@@ -44,8 +48,12 @@ public class DetailActivity extends AppCompatActivity {
     FirebaseDatabase Storydatabase;
     DatabaseReference myRefStory;
 
-    private String shelterPosition;
+    //Firebase2
+    FirebaseDatabase Likedatabase;
+    DatabaseReference LikemyRef;
 
+    private String shelterPosition;
+    private String storyPosition;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -53,7 +61,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         Intent intent = getIntent();
-        String storyPosition = intent.getExtras().getString("storyPosition");
+        storyPosition = intent.getExtras().getString("storyPosition");
 
         Storydatabase = FirebaseDatabase.getInstance();
         myRefStory = Storydatabase.getReference("story").child(String.valueOf(storyPosition));
@@ -71,9 +79,10 @@ public class DetailActivity extends AppCompatActivity {
                 String line3 = dataSnapshot.child("line3").getValue(String.class);
                 String line4 = dataSnapshot.child("line4").getValue(String.class);
                 String date = dataSnapshot.child("date").getValue(String.class);
+                String phone = dataSnapshot.child("shelterPhone").getValue(String.class);
                 String shelterName = dataSnapshot.child("shelterName").getValue(String.class);
                 int shelterId = dataSnapshot.child("shelterId").getValue(int.class);
-                Toast.makeText(getApplicationContext(), "shelterId : " + shelterId, Toast.LENGTH_LONG).show();
+                int shelterLike = dataSnapshot.child("like").getValue(int.class);
                 String shelterMarks = dataSnapshot.child("shelterMark").getValue(String.class);
 
                 shelterPosition = String.valueOf(shelterId);
@@ -87,6 +96,9 @@ public class DetailActivity extends AppCompatActivity {
 
                 TextView Date = findViewById(R.id.text_date);
                 Date.setText(date);
+
+                TextView Phone = findViewById(R.id.text_phone);
+                Phone.setText(phone);
 
                 ImageView ShelterMark = findViewById(R.id.text_sheltermark);
                 Picasso.get().load(shelterMarks).into(ShelterMark);
@@ -109,6 +121,9 @@ public class DetailActivity extends AppCompatActivity {
                 TextView Line4 = findViewById(R.id.text4_activity2);
                 Line4.setText(line4);
 
+                TextView ShelterLike = findViewById(R.id.text_likecount);
+                ShelterLike.setText(String.valueOf(shelterLike));
+
             }
 
             @Override
@@ -121,27 +136,34 @@ public class DetailActivity extends AppCompatActivity {
         initViews();
         initFirebaseDatabase();
 
+        setListViewHeightBasedOnChildren(mListView);
+
     }
 
     public void onLikeClick(View v){
-        Toast.makeText(getApplicationContext(), "LIKE", Toast.LENGTH_SHORT).show();
+        Storydatabase = FirebaseDatabase.getInstance();
+        myRefStory = Storydatabase.getReference("story").child(String.valueOf(storyPosition));
+
+        myRefStory.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int like = dataSnapshot.child("like").getValue(int.class);
+                //like = like + 1;
+                //LikemyRef.child("like").setValue(like);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
     }
 
     public void onBackClick(View v){
         super.onBackPressed();
     }
 
-    public void onGoShelter(View v){
-        Intent intent = new Intent(DetailActivity.this, ShelterActivity.class);
-        intent.putExtra("shelterPosition", shelterPosition);
-        startActivity(intent);
-    }
 
-    public void onGoDonationClick(View v){
-        Intent intent=new Intent(DetailActivity.this,DonationActivity.class);
-        intent.putExtra("shelterPosition", shelterPosition);
-        startActivity(intent);
-    }
     private void initViews() {
         final DataApplication MyData = (DataApplication)getApplication();
         mListView = (ListView) findViewById(R.id.list_message);
@@ -162,13 +184,15 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
     private void initFirebaseDatabase() {
         DataApplication MyData = (DataApplication) getApplication();
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFirebaseDatabase.getReference("message").child(String.valueOf(MyData.getStoryPosition()));
+        mDatabaseReference = mFirebaseDatabase.getReference("message").child(storyPosition);
         mChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -176,6 +200,8 @@ public class DetailActivity extends AppCompatActivity {
                 chatData.firebaseKey = dataSnapshot.getKey();
                 mAdapter.add(chatData);
                 mListView.smoothScrollToPosition(mAdapter.getCount());
+
+                setListViewHeightBasedOnChildren(mListView);
             }
 
             @Override
@@ -205,4 +231,33 @@ public class DetailActivity extends AppCompatActivity {
         mDatabaseReference.addChildEventListener(mChildEventListener);
     }
 
+    public void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST);
+
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+
+    }
+
+    public void onClickGoShelter(View v){
+        Intent intent = new Intent(DetailActivity.this, ShelterActivity.class);
+        intent.putExtra("storyPosition", String.valueOf(storyPosition));
+        intent.putExtra("shelterPosition", shelterPosition);
+        startActivity(intent);
+    }
 }

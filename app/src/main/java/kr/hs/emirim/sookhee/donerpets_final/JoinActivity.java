@@ -115,11 +115,9 @@ public class JoinActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // 회원가입 성공
                             CreateUserData();
-                            Toast.makeText(JoinActivity.this, R.string.success_signup, Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
                             // 회원가입 실패
-                            Toast.makeText(JoinActivity.this, R.string.failed_signup, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -134,10 +132,8 @@ public class JoinActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // 로그인 성공
-                            Toast.makeText(JoinActivity.this, R.string.success_login, Toast.LENGTH_SHORT).show();
                         } else {
                             // 로그인 실패
-                            Toast.makeText(JoinActivity.this, R.string.failed_login, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

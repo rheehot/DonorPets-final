@@ -30,6 +30,7 @@
             android:id="@+id/toolbar_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_bold"
             android:text="스토리"
             android:textColor="#137ef5"
             android:textSize="22sp"
@@ -58,15 +59,55 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/go_donation"
-            android:layout_width="300dp"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/button"
-            android:onClick="onGoDonationClick"
-            android:text="기부하러가기"
-            android:textColor="#137ef5" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="8dp"
+                app:srcCompat="@drawable/donor_level_01" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@drawable/button4"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edit_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:layout_weight="3"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="응원의 한 마디를 남겨주세요"
+                    android:inputType="textPersonName" />
+
+                <Button
+                    android:id="@+id/btn_send"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:paddingRight="-20dp"
+                    android:text="게시"
+                    android:textColor="#137ef5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
     <ScrollView
@@ -89,6 +130,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -129,12 +171,15 @@
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/text_sheltermark"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/text_sheltername"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:onClick="onClickGoShelter"
                         android:text="남양주유기견보호소"
                         android:textSize="18sp" />
 
@@ -143,15 +188,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:text="010-1021-6321" />
+                        android:text="Phone" />
 
                 </LinearLayout>
 
-                <kr.hs.emirim.sookhee.donerpets_final.RadiusImageView
+                <kr.hs.emirim.sookhee.donerpets_final.RadiusImageView2
                     android:id="@+id/text_sheltermark"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="20dp"
+                    android:onClick="onClickGoShelter"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -254,11 +300,11 @@
 
                 <Button
                     android:id="@+id/btn_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_weight="1"
+                    android:background="@drawable/heart_none"
                     android:onClick="onLikeClick"
-                    android:text="좋아요"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -286,39 +332,12 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <EditText
-                    android:id="@+id/edit_message"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:ems="10"
-                    android:hint="응원의 한 마디를 남겨주세요"
-                    android:inputType="textPersonName" />
-
-                <Button
-                    android:id="@+id/btn_send"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="응원하기" />
-
-            </LinearLayout>
-
             <ListView
                 android:id="@+id/list_message"
                 android:layout_width="match_parent"
-                android:layout_height="300dp">
+                android:layout_height="300dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
 
             </ListView>
         </LinearLayout>

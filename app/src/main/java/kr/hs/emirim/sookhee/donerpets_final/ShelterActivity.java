@@ -1,14 +1,22 @@
 package kr.hs.emirim.sookhee.donerpets_final;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,16 +34,67 @@ public class ShelterActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference myRef;
 
+    private String shelterPosition;
+
+    RecyclerView recyclerView;
+    CustomAdapter adapter;
+    FirebaseDatabase databaseStory;
+    DatabaseReference mRefStory;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shelter);
 
-        final DataApplication MyData = (DataApplication)getApplication();
+        Intent intent = getIntent();
+        shelterPosition = intent.getExtras().getString("shelterPosition");
+
+        recyclerView = findViewById(R.id.shelter_recycler);
+        adapter = new CustomAdapter(this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+        databaseStory = FirebaseDatabase.getInstance();
+        mRefStory = databaseStory.getReference().child("shelter").child(shelterPosition).child("story");
+
+        mRefStory.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String key = dataSnapshot.getKey();
+                Story story = dataSnapshot.getValue(Story.class);
+
+                adapter.addDataAndUpdate(key, story);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String key = dataSnapshot.getKey();
+                Story story = dataSnapshot.getValue(Story.class);
+
+                adapter.addDataAndUpdate(key, story);
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                String key = dataSnapshot.getKey();
+
+                adapter.deleteDataAndUpdate(key);
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("shelter").child(String.valueOf(MyData.getShelterPosition()));
+        myRef = database.getReference("shelter").child(shelterPosition);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -79,6 +138,14 @@ public class ShelterActivity extends AppCompatActivity {
 
             }
         });
+
+
+    }
+
+    public void onGoDonationClick(View v){
+        Intent intent=new Intent(ShelterActivity.this,DonationActivity.class);
+        intent.putExtra("shelterPosition", shelterPosition);
+        startActivity(intent);
     }
 
     public void onBackClick(View v){
@@ -95,9 +162,9 @@ public class ShelterActivity extends AppCompatActivity {
         mDatabaseReferenceS = mFirebaseDatabaseS.getReference("user").child(SaveSharedPreference.getEmail(this)).child("shelterLike");
 
         if (checkBox.isChecked()) {
-            mDatabaseReferenceS.child(String.valueOf(MyData.getShelterPosition())).setValue("1");
+            mDatabaseReferenceS.child(shelterPosition).setValue("1");
         } else {
-            mDatabaseReferenceS.child(String.valueOf(MyData.getShelterPosition())).setValue("0");
+            mDatabaseReferenceS.child(shelterPosition).setValue("0");
         }
     }
 }

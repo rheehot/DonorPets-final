@@ -36,10 +36,9 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void onSettingClick(View v){
-        SaveSharedPreference.clearUserName(this);
-        Toast.makeText(getApplicationContext(), "로그아웃", Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(ProfileActivity.this, SettingActivity.class);
+        startActivity(intent);
         finish();
-        //Intent intent = new Intent(ProfileActivity.this, SettingActivity.class);
-        //startActivity(intent);
     }
 }

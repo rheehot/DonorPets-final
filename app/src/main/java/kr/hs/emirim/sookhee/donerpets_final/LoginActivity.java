@@ -110,11 +110,11 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // 로그인 성공
                             getUsername();
-                            Toast.makeText(LoginActivity.this, "로그인 성공 : ", Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(LoginActivity.this, "환영합니다", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
                             // 로그인 실패
-                            Toast.makeText(LoginActivity.this, R.string.failed_login, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

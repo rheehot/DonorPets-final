@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
+
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
 
     private Context mCtx;
@@ -49,8 +50,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         holder.tvTitle.setText(person.getTitle());
         holder.tvShelter.setText(person.getShelterName());
         Picasso.get().load(img1).into(holder.ivImage);
-
-        Log.e("IMG : ", "" + img1);
 
 
     }

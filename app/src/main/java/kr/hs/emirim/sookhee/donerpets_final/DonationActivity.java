@@ -7,11 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,8 +16,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class DonationActivity extends AppCompatActivity {
-
-    private static final String TAG = "DonationActivity";
 
     FirebaseDatabase database;
     DatabaseReference myRef;
@@ -35,19 +30,23 @@ public class DonationActivity extends AppCompatActivity {
     EditText edit_type;
     EditText edit_count;
 
+    private String shelterPosition;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donation);
 
-        DataApplication MyData = (DataApplication)getApplication();
+        Intent intent = getIntent();
+        //shelterPosition = intent.getExtras().getString("shelterPosition");
+        shelterPosition = "1";
 
         text_name = (TextView) findViewById(R.id.text_name);
         text_account = (TextView)findViewById(R.id.text_account);
         text_phone = (TextView) findViewById(R.id.text_phone);
 
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("shelter").child(String.valueOf(MyData.getShelterPosition()));
+        myRef = database.getReference("shelter").child(shelterPosition);
 
         // Read from the database
         // 그리고 데이터베이스에 변경사항이 있으면 실행된다.
@@ -69,15 +68,11 @@ public class DonationActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
+                Log.w("DONATION", "Failed to read value.", error.toException());
             }
         });
-    }
 
-    public void onBackClick(View v){
-        super.onBackPressed();
     }
-
 
     public void onAllowDonation(View v){
         DataApplication MyData = (DataApplication)getApplication();
@@ -92,10 +87,12 @@ public class DonationActivity extends AppCompatActivity {
         DonationData donationData = new DonationData();
         donationData.type = type;
         donationData.count = count;
-        donationData.shelter = MyData.getShelterPosition();
+        donationData.shelter = Integer.parseInt(shelterPosition);
         myDonation.child("donation").push().setValue(donationData);
 
-        Toast.makeText(getApplicationContext(), "기부 감사합니다", Toast.LENGTH_SHORT).show();
         finish();
+    }
+    public void onBackClick(View v){
+        super.onBackPressed();
     }
 }

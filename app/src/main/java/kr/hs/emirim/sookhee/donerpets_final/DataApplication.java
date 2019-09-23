@@ -4,24 +4,25 @@ import android.app.Application;
 
 
 public class DataApplication extends Application {
-    private int storyPosition = 0;
-    private int shelterPosition = 0;
+    private boolean switch_alarm1 = false;
+    private boolean switch_alarm2 = false;
 
-    public void setStoryPosition(int position){
-        this.storyPosition = position;
+    public boolean isSwitch_alarm1(){
+        return switch_alarm1;
     }
 
-    public int getStoryPosition(){
-        return this.storyPosition;
+    public void setSwitch_alarm1(boolean switch_alarm1){
+        this.switch_alarm1 = switch_alarm1;
     }
 
-    public void setShelterPosition(int position){
-        this.shelterPosition = position;
+    public boolean isSwitch_alarm2() {
+        return switch_alarm2;
     }
 
-    public int getShelterPosition(){
-        return this.shelterPosition;
+    public void setSwitch_alarm2(boolean switch_alarm2) {
+        this.switch_alarm2 = switch_alarm2;
     }
+
 
 
 
