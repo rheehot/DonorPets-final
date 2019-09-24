@@ -226,8 +226,7 @@
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/img01" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/text2_activity2"
