@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -84,9 +83,11 @@ public class JoinActivity extends AppCompatActivity {
     private boolean isValidEmail() {
         if (email.isEmpty()) {
             // 이메일 공백
+            Toast.makeText(getApplicationContext(), "이메일을 입력해주세요", Toast.LENGTH_SHORT).show();
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             // 이메일 형식 불일치
+            Toast.makeText(getApplicationContext(), "이메일 형식이 맞지 않습니다", Toast.LENGTH_SHORT).show();
             return false;
         } else {
             return true;
@@ -97,9 +98,11 @@ public class JoinActivity extends AppCompatActivity {
     private boolean isValidPasswd() {
         if (password.isEmpty()) {
             // 비밀번호 공백
+            Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
             return false;
         } else if (!PASSWORD_PATTERN.matcher(password).matches()) {
             // 비밀번호 형식 불일치
+            Toast.makeText(getApplicationContext(), "비밀번호 형식이 맞지 않습니다", Toast.LENGTH_SHORT).show();
             return false;
         } else {
             return true;
@@ -114,8 +117,8 @@ public class JoinActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // 회원가입 성공
+                            Toast.makeText(getApplicationContext(), "회원가입 성공!", Toast.LENGTH_SHORT).show();
                             CreateUserData();
-                            finish();
                         } else {
                             // 회원가입 실패
                         }
@@ -148,6 +151,9 @@ public class JoinActivity extends AppCompatActivity {
         user.username = username;
         user.phone = phone;
         user.email = email;
+        user.level = 10;
         mDatabaseReference.setValue(user);
+
+        finish();
     }
 }

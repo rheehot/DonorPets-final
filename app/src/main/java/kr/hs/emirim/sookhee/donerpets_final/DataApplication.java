@@ -2,7 +2,6 @@ package kr.hs.emirim.sookhee.donerpets_final;
 
 import android.app.Application;
 
-
 public class DataApplication extends Application {
     private boolean switch_alarm1 = false;
     private boolean switch_alarm2 = false;

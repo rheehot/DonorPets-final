@@ -7,9 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
 public class ChatAdapter extends ArrayAdapter<ChatData> {
 
     public ChatAdapter(Context context, int resource) {

@@ -23,7 +23,6 @@ public class DonationActivity extends AppCompatActivity {
     FirebaseDatabase donationDatabase;
     DatabaseReference myDonation;
 
-    TextView text_name;
     TextView text_phone;
     TextView text_account;
 
@@ -41,7 +40,6 @@ public class DonationActivity extends AppCompatActivity {
         //shelterPosition = intent.getExtras().getString("shelterPosition");
         shelterPosition = "1";
 
-        text_name = (TextView) findViewById(R.id.text_name);
         text_account = (TextView)findViewById(R.id.text_account);
         text_phone = (TextView) findViewById(R.id.text_phone);
 
@@ -55,12 +53,10 @@ public class DonationActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String name = dataSnapshot.child("name").getValue(String.class);
                 String phone = dataSnapshot.child("phone").getValue(String.class);
                 String account = dataSnapshot.child("account").getValue(String.class);
 
                 //데이터를 화면에 출력해 준다.
-                text_name.setText(name);
                 text_phone.setText(phone);
                 text_account.setText(account);
             }

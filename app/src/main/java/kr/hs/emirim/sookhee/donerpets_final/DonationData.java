@@ -4,5 +4,4 @@ public class DonationData {
     public String type;
     public int count;
     public int shelter;
-
 }

@@ -24,6 +24,35 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
+import android.media.Image;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
+
+import com.google.android.gms.common.internal.StringResourceValueReader;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
+
 public class ShelterActivity extends AppCompatActivity {
 
     // Firebase
@@ -40,6 +69,8 @@ public class ShelterActivity extends AppCompatActivity {
     CustomAdapter adapter;
     FirebaseDatabase databaseStory;
     DatabaseReference mRefStory;
+
+    int ishelterCount;
 
 
     @Override
@@ -102,11 +133,12 @@ public class ShelterActivity extends AppCompatActivity {
                 String shelterName = dataSnapshot.child("name").getValue(String.class);
                 String shelterPhone = dataSnapshot.child("phone").getValue(String.class);
                 String shelterMark = dataSnapshot.child("mark").getValue(String.class);
-                int shelterDonationCount = dataSnapshot.child("donationCount").getValue(int.class);
-                int shelterLikeCount = dataSnapshot.child("likeCount").getValue(int.class);
-                int shelterStoryCount = dataSnapshot.child("storyCount").getValue(int.class);
+                String shelterDonationCount = dataSnapshot.child("donationCount").getValue(String.class);
+                String shelterLikeCount = dataSnapshot.child("likeCount").getValue(String.class);
+                String shelterStoryCount = dataSnapshot.child("storyCount").getValue(String.class);
                 String shelterIntro = dataSnapshot.child("intro").getValue(String.class);
 
+                ishelterCount = Integer.parseInt(shelterLikeCount);
 
                 //데이터를 화면에 출력해 준다.
                 TextView ShelterName = findViewById(R.id.tv_shelter_name);
@@ -139,6 +171,9 @@ public class ShelterActivity extends AppCompatActivity {
             }
         });
 
+        ScrollView shelterScroll = (ScrollView)findViewById(R.id.shelterScroll);
+        shelterScroll.scrollTo(0, 0);
+
 
     }
 
@@ -154,17 +189,23 @@ public class ShelterActivity extends AppCompatActivity {
 
     public void onClickShelterLike(View v){
 
-        CheckBox checkBox = (CheckBox) findViewById(R.id.check_shelter_like) ;
+        ImageView likebtn = (ImageView) findViewById(R.id.check_shelter_like) ;
+        likebtn.setImageResource(R.drawable.heart_none);
+
+        TextView likecount = (TextView) findViewById(R.id.tv_shelter_like_count);
+        ishelterCount = ishelterCount + 1;
+        likecount.setText(String.valueOf(ishelterCount));
 
         DataApplication MyData = (DataApplication)getApplication();
 
         mFirebaseDatabaseS = FirebaseDatabase.getInstance();
-        mDatabaseReferenceS = mFirebaseDatabaseS.getReference("user").child(SaveSharedPreference.getEmail(this)).child("shelterLike");
+        mDatabaseReferenceS = mFirebaseDatabaseS.getReference();
 
-        if (checkBox.isChecked()) {
-            mDatabaseReferenceS.child(shelterPosition).setValue("1");
+        mDatabaseReferenceS.child("shelter").child("likeCount").setValue(String.valueOf(ishelterCount));
+        if (likebtn.isPressed()) {
+            mDatabaseReferenceS.child(shelterPosition).child(SaveSharedPreference.getEmail(this)).child("user").child("shelterLike").setValue("1");
         } else {
-            mDatabaseReferenceS.child(shelterPosition).setValue("0");
+            mDatabaseReferenceS.child(shelterPosition).child(SaveSharedPreference.getEmail(this)).child("user").child("shelterLike").setValue("0");
         }
     }
 }

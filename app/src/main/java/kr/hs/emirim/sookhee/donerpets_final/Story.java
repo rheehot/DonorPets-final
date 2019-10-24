@@ -1,19 +1,22 @@
 package kr.hs.emirim.sookhee.donerpets_final;
 
+
 public class Story {
 
     public String title;
     public String shelterName;
     public String img1;
+    public String date;
 
 
     public Story() {
     }
 
-    public Story(String title, String shelterName, String img1) {
+    public Story(String title, String shelterName, String img1, String date) {
         this.title = title;
         this.shelterName = shelterName;
         this.img1 = img1;
+        this.date = date;
     }
 
 
@@ -41,4 +44,11 @@ public class Story {
         this.img1 = img1;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }

@@ -2,12 +2,9 @@ package kr.hs.emirim.sookhee.donerpets_final;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.Switch;
-import android.widget.Toast;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -27,5 +24,10 @@ public class SettingActivity extends AppCompatActivity {
 
     public void onBackClick(View v){
         super.onBackPressed();
+    }
+
+    public void onClickGoTos(View v){
+        Intent intent = new Intent(SettingActivity.this, TOSActivity.class);
+        startActivity(intent);
     }
 }

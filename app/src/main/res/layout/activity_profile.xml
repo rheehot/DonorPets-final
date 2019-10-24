@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="62dp"
         android:background="#fff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,10 +19,10 @@
 
         <ImageView
             android:id="@+id/toolbar_back"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
             android:layout_marginStart="20dp"
-            android:background="@drawable/arrow_left"
+            android:background="@drawable/arrow_left_blue"
             android:onClick="onBackClick"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -31,8 +31,8 @@
 
         <ImageView
             android:id="@+id/toolbar_back2"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/setting"
             android:onClick="onSettingClick"
@@ -45,6 +45,7 @@
             android:id="@+id/title_activity2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/notosans_medium"
             android:text="프로필"
             android:textColor="#137ef5"
             android:textSize="22sp"
@@ -61,127 +62,166 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:id="@+id/profile_img"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
             android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
             app:srcCompat="@drawable/donor_level_01" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/notosans_medium"
                 android:text="사용자 이름"
                 android:textColor="#000"
-                android:textSize="18sp"
+                android:textSize="21sp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal"
-                android:paddingLeft="8dp"
-                android:weightSum="2">
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView18"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="응원" />
 
                     <TextView
                         android:id="@+id/textView21"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/notosans_bold"
                         android:gravity="center"
-                        android:text="0" />
+                        android:text="0"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/notosans_medium"
+                        android:gravity="center"
+                        android:text="응원"
+                        android:textColor="#80000000"
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="45dp"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView17"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="기부" />
 
                     <TextView
                         android:id="@+id/textView15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
+                        android:fontFamily="@font/notosans_bold"
                         android:gravity="center"
-                        android:text="0" />
+                        android:text="0"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/notosans_medium"
+                        android:gravity="center"
+                        android:text="기부"
+                        android:textColor="#80000000"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="20dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
                 android:orientation="horizontal">
 
+
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/profile_levelname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosans_medium"
                     android:text="오리지널 도너츠"
                     android:textColor="#000"
-                    android:textSize="14sp" />
+                    android:textSize="11sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/profile_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
+                    android:fontFamily="@font/notosans_medium"
                     android:text="0pt"
-                    android:textSize="14sp" />
-            </LinearLayout>
+                    android:textColor="#80000000"
+                    android:textSize="11sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ProgressBar
-                android:id="@+id/progressBar"
+                android:id="@+id/progress_level"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
                 android:progress="2" />
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shadow_blue_1"
+        android:fontFamily="@font/notosans_medium"
+        android:text="텀블벅 후원하러 가기"
+        android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/notosans_bold"
+        android:text="내가 후원하는 보호소"
+        android:textColor="#000"
+        android:textSize="17sp" />
 
 </LinearLayout>

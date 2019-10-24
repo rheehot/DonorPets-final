@@ -24,19 +24,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/arrow_left" />
+            app:srcCompat="@drawable/arrow_left_blue" />
 
         <TextView
             android:id="@+id/toolbar_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_bold"
+            android:fontFamily="@font/notosans_medium"
             android:text="스토리"
             android:textColor="#137ef5"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintStart_toEndOf="@+id/toolbar_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -81,6 +81,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:background="@drawable/button4"
                 android:orientation="horizontal">
 
@@ -295,14 +297,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="4dp">
 
-                <Button
+                <ImageView
                     android:id="@+id/btn_like"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_weight="1"
-                    android:background="@drawable/heart_none"
+                    android:background="@drawable/heart1"
                     android:onClick="onLikeClick"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -320,8 +323,8 @@
 
                 <TextView
                     android:id="@+id/text_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="173dp"
+                    android:layout_height="19dp"
                     android:layout_marginStart="2dp"
                     android:layout_weight="3"
                     android:text="명이 이 스토리를 응원합니다."

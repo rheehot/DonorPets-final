@@ -7,17 +7,20 @@ public class ExampleItem implements Parcelable {
     private int mImageResource;
     private String mText1;
     private String mText2;
+    private String mData;
 
-    public ExampleItem(int imageResource, String text1, String text2) {
+    public ExampleItem(int imageResource, String text1, String text2, String data) {
         mImageResource = imageResource;
         mText1 = text1;
         mText2 = text2;
+        mData = data;
     }
 
     protected ExampleItem(Parcel in) {
         mImageResource = in.readInt();
         mText1 = in.readString();
         mText2 = in.readString();
+        mData = in.readString();
     }
 
     public static final Creator<ExampleItem> CREATOR = new Creator<ExampleItem>() {
@@ -54,5 +57,6 @@ public class ExampleItem implements Parcelable {
         dest.writeInt(mImageResource);
         dest.writeString(mText1);
         dest.writeString(mText2);
+        dest.writeString(mData);
     }
 }
