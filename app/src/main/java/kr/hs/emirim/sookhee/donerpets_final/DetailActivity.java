@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -58,6 +59,8 @@ public class DetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         storyPosition = intent.getExtras().getString("storyPosition");
+
+        Toast.makeText(getApplicationContext(), "Detail1" + storyPosition, Toast.LENGTH_SHORT).show();
 
         Storydatabase = FirebaseDatabase.getInstance();
         myRefStory = Storydatabase.getReference("story").child(storyPosition);

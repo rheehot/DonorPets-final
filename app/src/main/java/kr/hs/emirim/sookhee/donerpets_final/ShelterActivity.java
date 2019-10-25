@@ -66,7 +66,7 @@ public class ShelterActivity extends AppCompatActivity {
     private String shelterPosition;
 
     RecyclerView recyclerView;
-    CustomAdapter adapter;
+    CustomAdapter2 adapter;
     FirebaseDatabase databaseStory;
     DatabaseReference mRefStory;
 
@@ -78,14 +78,19 @@ public class ShelterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shelter);
 
+        DataApplication MyData = (DataApplication)getApplication();
+
         Intent intent = getIntent();
         shelterPosition = intent.getExtras().getString("shelterPosition");
+        MyData.setShelterPosition(shelterPosition);
+
 
         recyclerView = findViewById(R.id.shelter_recycler);
-        adapter = new CustomAdapter(this);
+        adapter = new CustomAdapter2(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
+        Toast.makeText(getApplicationContext(), "shelter, ShelterPosition : " + shelterPosition, Toast.LENGTH_SHORT).show();
         databaseStory = FirebaseDatabase.getInstance();
         mRefStory = databaseStory.getReference().child("shelter").child(shelterPosition).child("story");
 
