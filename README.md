@@ -1,4 +1,4 @@
-# DonerPets-final
+# DonorPets-final
 2019 Smarteen App+ Chellange 생활부문 대상 : 도너츠(DonorPets) - 작은 손길로 세상을 바꾸다
 
 ## Download
