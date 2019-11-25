@@ -34,5 +34,5 @@ https://play.google.com/store/apps/details?id=kr.hs.emirim.sookhee.donerpets_fin
 ## Authors
 * Minji Jeong - *PM, Development* - [Sookhee](https://github.com/Sookhee)
 * Hyunsoo Lee - *Development* - [LHyunSoo](https://github.com/LHyunSoo)
-* Seonu Joo - *Design*
+* Seonwu Joo - *Design*
 * Juha Yoon - *Design*
