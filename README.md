@@ -36,3 +36,7 @@ https://play.google.com/store/apps/details?id=kr.hs.emirim.sookhee.donerpets_fin
 * Hyunsoo Lee - *Development* - [LHyunSoo](https://github.com/LHyunSoo)
 * Seonwu Joo - *Design*
 * Juha Yoon - *Design*
+
+
+## Journal
+* https://www.youtube.com/watch?v=aXQXFiAR-3k
