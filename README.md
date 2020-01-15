@@ -40,4 +40,5 @@ https://play.google.com/store/apps/details?id=kr.hs.emirim.sookhee.donerpets_fin
 
 ## Journal
 * https://www.youtube.com/watch?v=aXQXFiAR-3k
+* https://m.youtube.com/watch?v=thGCCTfUuPY
 * https://it.donga.com/29710/
